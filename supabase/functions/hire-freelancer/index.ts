@@ -11,7 +11,8 @@ function corsHeaders() {
   };
 }
 
-Deno.serve(async (req: Request) => {
+const PORT = Number(Deno.env.get('PORT') || 8000);
+Deno.serve({ port: PORT }, async (req: Request) => {
   if (req.method === 'OPTIONS') {
     return new Response(null, {
       status: 200,
